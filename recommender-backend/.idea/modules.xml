@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/recommender-backend.iml" filepath="$PROJECT_DIR$/.idea/modules/recommender-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/recommender-backend_main.iml" filepath="$PROJECT_DIR$/.idea/modules/recommender-backend_main.iml" group="recommender-backend" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/recommender-backend_test.iml" filepath="$PROJECT_DIR$/.idea/modules/recommender-backend_test.iml" group="recommender-backend" />
+    </modules>
+  </component>
+</project>
