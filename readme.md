@@ -8,8 +8,8 @@
 ## Vista estática de la arquitectura del software (Diagrama de Componentes)   
 
 ![](/diagrams/recommender.component.png)
-
-  1. __recommender.entities__: capa de acceso a datos; a travésde este se obtiene las información de las películas y usuario a través de este capa.  
+  
+  1. __recommender.entities__:  capa  de  acceso  a  datos;  a  través de  esta capa se  obtiene  la información  de  las  películas  y  usuario.
   2. __recommender.core__: esta capa consume la entidades y aplica las lógica de negocios en ellas.
   3. __recommender.rest__: esta es un mecanismo de delivery el cual envía los datos a la capa de presentación del cliente. Esta también se encarga de enviar las notificaciones a la capa de presentación para indicar que se procesaron recomendaciones.  
   4. __recommender.app__: es la capa de presentación con el que el cliente interactúa.  
