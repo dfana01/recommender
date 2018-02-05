@@ -1,13 +1,15 @@
-group 'recommender-backend'
-version '1.0-SNAPSHOT'
-
 apply plugin: 'groovy'
 apply plugin: 'java'
 apply plugin: 'war'
 
-apply plugin: 'idea'
+description = 'recommender-backend'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
 
 repositories {
     mavenCentral()
@@ -15,19 +17,6 @@ repositories {
 
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.3.11'
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-}
-group 'recommender-backend'
-version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
-
-sourceCompatibility = 1.5
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
+	providedCompile group: 'javax', name: 'javaee-web-api', version:'7.0'
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

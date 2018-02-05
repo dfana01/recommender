@@ -1,0 +1,22 @@
+allprojects{
+	group 'recommender-app'
+	version '1.0-SNAPSHOT'
+}
+
+task clean(type: GradleBuild) {
+	group 'application'
+	dependsOn ':recommender-backend:clean'
+	dependsOn ':recommender-frontend:clean'
+}
+
+task build(type: GradleBuild){
+	group 'application'
+	dependsOn ':recommender-frontend:assemble'
+    delete './recommender-backend/src/main/webapp'
+	copy {
+		from './recommender-frontend/platforms/browser/www'
+		into './recommender-backend/src/main/webapp'
+	}
+    dependsOn ':recommender-backend:war'
+    delete file('./recommender-backend/src/main/webapp/').listFiles()
+}

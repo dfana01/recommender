@@ -1,0 +1,30 @@
+description = 'recommender-frontend'
+
+buildscript {
+  ext {
+    gradleNodeVersion = '1.2.0'
+  }
+
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {}
+}
+
+task clean(type: Delete) {
+  group 'build'
+  delete "./platforms","./node_modules","./plugins","./node","./www"
+}
+
+task assemble(type:Exec) {
+  group 'build'
+  workingDir '.'
+  commandLine 'cmd', '/c', 'ionic', 'cordova', 'build', 'browser', '--prod'
+}
+
+task build(type:Exec) {
+  group 'build'
+  workingDir '.'
+  commandLine 'cmd', '/c', 'ionic', 'cordova', 'build', 'browser'
+}

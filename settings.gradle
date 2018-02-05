@@ -1,0 +1,4 @@
+rootProject.name = 'recommender-app'
+
+include 'recommender-backend','recommender-frontend'
+
