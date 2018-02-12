@@ -9,14 +9,17 @@ task clean(type: GradleBuild) {
 	dependsOn ':recommender-frontend:clean'
 }
 
-task build(type: GradleBuild){
+task copy(type: GradleBuild){
 	group 'application'
-	dependsOn ':recommender-frontend:assemble'
-    delete './recommender-backend/src/main/webapp'
 	copy {
 		from './recommender-frontend/platforms/browser/www'
 		into './recommender-backend/src/main/webapp'
 	}
-    dependsOn ':recommender-backend:war'
-    delete file('./recommender-backend/src/main/webapp/').listFiles()
+}
+
+task build(type: GradleBuild){
+	group 'application'
+    tasks = [':recommender-frontend:assemble', 
+             'copy',
+             ':recommender-backend:war']
 }
