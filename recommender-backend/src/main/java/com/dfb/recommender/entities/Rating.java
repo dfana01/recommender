@@ -10,7 +10,7 @@ public class Rating {
 
     private Long id;
     private Movie movie;
-    private double calification;
+    private double qualification;
     private User user;
 
 
@@ -24,7 +24,7 @@ public class Rating {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "movie", referencedColumnName = "id")
     public Movie getMovie() {
         return movie;
@@ -36,16 +36,16 @@ public class Rating {
 
     @Basic
     @Column(nullable = false, precision = 1)
-    public double getCalification() {
-        return calification;
+    public double getQualification() {
+        return qualification;
     }
 
 
-    public void setCalification(double calification) {
-        this.calification = calification;
+    public void setQualification(double qualification) {
+        this.qualification = qualification;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user", referencedColumnName = "id")
     public User getUser() {
         return user;

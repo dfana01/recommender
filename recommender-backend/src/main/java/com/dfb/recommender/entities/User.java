@@ -13,9 +13,8 @@ public class User {
     private String lastName;
     private String phone;
     private String email;
-    private List<Recommendation> recommendations;
+//    private List<Recommendation> recommendations;
     private List<Rating> ratings;
-    private List<Viewed> vieweds;
     private Credential credential;
 
 
@@ -68,15 +67,15 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    @OneToMany(mappedBy = "user",cascade=CascadeType.PERSIST)
-    public List<Recommendation> getRecommendations() {
-        return recommendations;
-    }
-
-    public void setRecommendations(List<Recommendation> recommendations) {
-        this.recommendations = recommendations;
-    }
+//
+//    @OneToMany(mappedBy = "user",cascade=CascadeType.PERSIST)
+//    public List<Recommendation> getRecommendations() {
+//        return recommendations;
+//    }
+//
+//    public void setRecommendations(List<Recommendation> recommendations) {
+//        this.recommendations = recommendations;
+//    }
 
     @OneToMany(mappedBy = "user",cascade=CascadeType.PERSIST)
     public List<Rating> getRatings() {
@@ -87,17 +86,9 @@ public class User {
         this.ratings = ratings;
     }
 
-    @OneToMany(mappedBy = "user",cascade=CascadeType.PERSIST)
-    public List<Viewed> getVieweds() {
-        return vieweds;
-    }
 
-    public void setVieweds(List<Viewed> vieweds) {
-        this.vieweds = vieweds;
-    }
-
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user")
+    @OneToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="credential", referencedColumnName = "id")
     public Credential getCredential() {
         return credential;
     }

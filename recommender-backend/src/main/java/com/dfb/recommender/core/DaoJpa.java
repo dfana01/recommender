@@ -1,19 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.bdi.generic.dao;
+package com.dfb.recommender.core;
 
-import java.util.List;
 import javax.persistence.EntityManager;
+import java.util.List;
 
 /**
  *
  * @author dfana
- * @param <T>
  */
-public abstract class DaoJpa<T> implements Dao<T> {
+public abstract class DaoJpa<T>  {
     
     protected final Class<T> entityClass;
     
@@ -23,34 +17,28 @@ public abstract class DaoJpa<T> implements Dao<T> {
         this.entityClass = entityClass;
     }
     
-    @Override
     public void create(T entity) {
         getEntityManager().persist(entity);
     }
 
-    @Override
     public void edit(T entity) {
         getEntityManager().merge(entity);
     }
 
-    @Override
     public void remove(T entity) {
         getEntityManager().remove(getEntityManager().merge(entity));
     }
 
-    @Override
     public T find(Object id) {
         return getEntityManager().find(entityClass, id);
     }
     
-    @Override
     public List<T> findAll() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
     }
 
-    @Override
     public List<T> findRange(int[] range) {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
@@ -67,5 +55,4 @@ public abstract class DaoJpa<T> implements Dao<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-    
 }

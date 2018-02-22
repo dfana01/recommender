@@ -11,8 +11,10 @@ public class Movie {
 
     private Long id;
     private String title;
+    private String genres;
     private Link link;
     private List<Tag> tags;
+    private List<Rating> ratings;
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -34,8 +36,7 @@ public class Movie {
         this.title = title;
     }
 
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="movie")
+    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="movie")
     public Link getLink() {
         return link;
     }
@@ -44,12 +45,31 @@ public class Movie {
         this.link = link;
     }
 
-    @OneToMany(mappedBy = "movie",cascade=CascadeType.PERSIST)
+    @OneToMany(mappedBy = "movie",cascade=CascadeType.PERSIST,fetch = FetchType.LAZY)
     public List<Tag> getTags() {
         return tags;
     }
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+
+    @Basic
+    @Column(nullable = true, length = 5000)
+    public String getGenres() {
+        return genres;
+    }
+
+    public void setGenres(String genres) {
+        this.genres = genres;
+    }
+
+    @OneToMany(mappedBy = "movie",cascade=CascadeType.PERSIST, fetch = FetchType.EAGER)
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 }

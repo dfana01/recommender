@@ -2,28 +2,33 @@ package com.dfb.recommender.core;
 
 import com.dfb.recommender.entities.Movie;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by Dante on 2/21/2018.
  */
-public class MovieRepository implements BaseRepository<Movie> {
+@Stateless
+public class MovieDao extends DaoJpa<Movie> {
 
     @PersistenceContext
     private EntityManager em;
 
-    @Override
-    public List<Movie> list() {
-        em.
-        return ;
+    public MovieDao() {
+        super(Movie.class);
     }
 
     @Override
-    public Optional<Movie> get() {
-        return null;
+    protected EntityManager getEntityManager() {
+        return this.em;
     }
 
+    @Override
+    public List<Movie> findRange(int[] range) {
+        List<Movie> movies = super.findRange(range);
+        movies.forEach(movie -> movie.getLink());
+        return movies;
+    }
 }

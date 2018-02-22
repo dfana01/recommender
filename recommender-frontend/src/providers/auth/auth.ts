@@ -9,7 +9,7 @@ export class AuthProvider {
   constructor(public http: HttpClient) {}
 
   login(credential: Credential){
-    return this.http.post(Settings.authUrl(), credential);
+    return this.http.post(Settings.authUrl(),credential);
   }
 
 }
