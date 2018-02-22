@@ -1,0 +1,57 @@
+movie-slide {
+    .title{
+        margin: 10px 10px 10px 5px;
+        padding: 10px;
+    }
+
+    ion-slide{
+        padding: 5px;
+        margin: 5px;
+        min-width: 240px;
+        min-height: 480px;
+        max-width: 240px;
+        max-height: 480px;
+        background: #ccc;
+    }
+    .slide-wrapper{
+        min-height: 480px; 
+        max-height: 480px;
+        position: relative;
+
+        h1{
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top:0px;
+            left: 0px;
+            color: white;
+            padding: 10px;
+            font-size: 15px;
+        }
+
+        .slide-button{
+            top:5px;
+            height: 100%;
+            position: absolute;
+            z-index: 1000;
+            background:rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 20px;
+            width: 60px;
+            transition: all 0.5s ease;
+        }
+        
+        .slide-button:hover{
+            width: 70px;
+        }
+
+        .forward{
+            float: right;
+            right: 0;
+        }
+        .back{
+            float: left;
+            left: 0;
+        }
+    } 
+}
