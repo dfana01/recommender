@@ -1,0 +1,49 @@
+<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-common -->
+<dependency>
+    <groupId>org.apache.hadoop</groupId>
+    <artifactId>hadoop-common</artifactId>
+    <version>3.0.0</version>
+    <scope>provided</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-hdfs -->
+<dependency>
+    <groupId>org.apache.hadoop</groupId>
+    <artifactId>hadoop-hdfs</artifactId>
+    <version>3.0.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-mapreduce-client-core -->
+<dependency>
+    <groupId>org.apache.hadoop</groupId>
+    <artifactId>hadoop-mapreduce-client-core</artifactId>
+    <version>3.0.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-yarn-api -->
+<dependency>
+    <groupId>org.apache.hadoop</groupId>
+    <artifactId>hadoop-yarn-api</artifactId>
+    <version>3.0.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-auth -->
+<dependency>
+    <groupId>org.apache.hadoop</groupId>
+    <artifactId>hadoop-auth</artifactId>
+    <version>3.0.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-yarn-client -->
+<dependency>
+    <groupId>org.apache.hadoop</groupId>
+    <artifactId>hadoop-yarn-client</artifactId>
+    <version>3.0.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-mapreduce-client-core -->
+<dependency>
+    <groupId>org.apache.hadoop</groupId>
+    <artifactId>hadoop-mapreduce-client-core</artifactId>
+    <version>3.0.0</version>
+</dependency>
