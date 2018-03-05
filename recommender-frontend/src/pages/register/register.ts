@@ -15,6 +15,10 @@ export class RegisterPage {
   constructor(private authProvider: AuthProvider,private toastCtrl: ToastController,private events: Events) {} 
 
   onSave(){
+    if(!this.user.username  || !this.user.password){
+      this.toastCtrl.create({ duration: 3000, message: "Please complete all field."}).present();  
+      return;
+    }
     this.authProvider.register(this.user)
       .subscribe((user) => {
         this.toastCtrl.create({ duration: 3000, message: "Welcome to the platform."}).present();

@@ -7,6 +7,9 @@ import java.util.List;
  * Created by Dante on 2/11/2018.
  */
 @Entity
+@Table(uniqueConstraints={
+        @UniqueConstraint(columnNames = {"email"})
+})
 public class User {
     private Long id;
     private String firstName;
