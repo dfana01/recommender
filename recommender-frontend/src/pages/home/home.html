@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content padding>
-  
+  <h1 class="title" ion-text text-center>Recommended For You</h1>
   <ion-slides *ngIf="recommendations.length > 0" class="recomendation" loop="true">
     <ion-slide *ngFor="let recommendation of recommendations">
       <img data-src="{{ recommendation?.movie?.detail?.backdrop_path }}">

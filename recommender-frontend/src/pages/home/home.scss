@@ -18,7 +18,9 @@ page-home {
         max-width: 100%;
         min-height: 420px !important;
         max-height: 420px !important;
-        padding-top: 40%;
+        h1{
+            padding-top: 200px !important;
+        }
     }
     ion-slides.recomendation{
         margin: 0px;
