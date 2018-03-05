@@ -6,11 +6,7 @@
       <small ion-text color="danger">BETA</small>
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-badge color="accent" color="danger">5</ion-badge>
-        <ion-icon name="notifications"></ion-icon>
-      </button>
-      <button ion-button icon-only (click)="logout()"> 
+      <button ion-button icon-only (click)="logout()">
         <ion-icon name="log-out"></ion-icon>
       </button>
     </ion-buttons>
@@ -18,7 +14,8 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-slides class="recomendation" loop="true">
+  
+  <ion-slides *ngIf="recommendations.length > 0" class="recomendation" loop="true">
     <ion-slide *ngFor="let recommendation of recommendations">
       <img data-src="{{ recommendation?.movie?.detail?.backdrop_path }}">
       <div class="info">
@@ -32,9 +29,11 @@
         <p ion-text>{{ recommendation?.movie?.detail?.overview }}</p>
       </div>
     </ion-slide>
-    <ion-slide *ngIf="recommendations.length == 0">
-      <h1 ion-text text-center color="danger">No recommendation yet, please rate some movies.</h1>
-    </ion-slide>
   </ion-slides>
+
+  <div *ngIf="recommendations.length == 0" class="recomendation">
+      <h1 ion-text text-center color="danger">No recommendation yet, please rate some movies.</h1>
+  </div>
+  
   <movie-slide title="Movies"></movie-slide>
 </ion-content>

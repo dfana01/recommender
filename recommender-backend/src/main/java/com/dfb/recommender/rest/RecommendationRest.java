@@ -31,7 +31,7 @@ public class RecommendationRest extends RecommendationDao{
     @GET
     @Path("/{id}")
     @Produces({"application/json"})
-    public List<RecommendationDto> list( @PathParam("id") long userId){
+    public List<RecommendationDto> recommendation( @PathParam("id") long userId){
         final List<RecommendationDto> recommendations = new ArrayList<>();
         this.getRecommendation(userId).forEach(recommendation -> {
             RecommendationDto recommendationDto = new RecommendationDto();

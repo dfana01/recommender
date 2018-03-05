@@ -13,6 +13,13 @@ page-home {
         }
     }
 
+    div.recomendation{
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 420px !important;
+        max-height: 420px !important;
+        padding-top: 40%;
+    }
     ion-slides.recomendation{
         margin: 0px;
         padding: 0px;
