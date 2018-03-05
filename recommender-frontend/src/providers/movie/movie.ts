@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Settings } from '../../app/app.settings';
-import { Movie, MovieDetail, User } from '../../app/app.model';
+import { Movie, MovieDetail } from '../../app/app.model';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/do';
 @Injectable()

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, ToastController, Events } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { Credential } from '../../app/app.model';
-import { HomePage } from '../home/home';
+import { Credential } from '../../app/app.model'; 
 
 @IonicPage()
 @Component({

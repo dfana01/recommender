@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events, ViewController } from 'ionic-angular';
+import { IonicPage, Events, ViewController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { LoginPage } from '../login/login';
 
