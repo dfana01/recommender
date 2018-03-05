@@ -1,17 +1,13 @@
 package com.dfb.recommender.rest;
 
-import com.dfb.recommender.core.DaoJpa;
+import com.dfb.recommender.core.UserDao;
 import com.dfb.recommender.entities.Credential;
 import com.dfb.recommender.entities.User;
+import com.dfb.recommender.rest.dto.UserDto;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -21,13 +17,14 @@ import javax.ws.rs.core.Response;
  */
 @Path("/authentication")
 @Stateless
-public class AuthenticationRest extends DaoJpa<User> {
+public class AuthenticationRest extends UserDao {
 
     @PersistenceContext
     private EntityManager em;
 
-    public AuthenticationRest() {
-        super(User.class);
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
     }
 
     @POST
@@ -35,25 +32,27 @@ public class AuthenticationRest extends DaoJpa<User> {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response authenticate(Credential credential) {
         try {
-            System.out.println(credential);
-            return Response.ok(this.login(credential)).build();
+            UserDto userDto = new UserDto();
+            credential = this.login(credential);
+            userDto.fromData(credential.getUser());
+            return Response.ok(userDto).build();
         } catch (Exception e) {
+            System.out.println(e.toString());
             return Response.status(Response.Status.FORBIDDEN).build();
         }
     }
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
-
-    public Credential login(Credential credential){
-        TypedQuery<Credential> query =
-                em.createNamedQuery("Credential.login", Credential.class);
-        query.setParameter("username",credential.getUser());
-        query.setParameter("password",credential.getPassword());
-        Credential credentialFromDb = query.getSingleResult();
-        System.out.println(credentialFromDb);
-        return credentialFromDb;
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response create(UserDto userDto) {
+        try {
+            userDto.fromData(this.register(userDto));
+            return Response.ok(userDto).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.toString());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
     }
 }

@@ -7,12 +7,16 @@ import java.util.List;
  * Created by Dante on 2/11/2018.
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name="Movie.getRecommendation",
+                query="SELECT c FROM Movie c"),
+})
 public class Movie {
 
     private Long id;
     private String title;
     private String genres;
-    private Link link;
+    private List<Link> links;
     private List<Tag> tags;
     private List<Rating> ratings;
 
@@ -36,13 +40,13 @@ public class Movie {
         this.title = title;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="movie")
-    public Link getLink() {
-        return link;
+    @OneToMany(mappedBy="movie")
+    public List<Link> getLinks(){
+        return links;
     }
 
-    public void setLink(Link link) {
-        this.link = link;
+    public void setLinks(List<Link> links) {
+        this.links = links;
     }
 
     @OneToMany(mappedBy = "movie",cascade=CascadeType.PERSIST,fetch = FetchType.LAZY)

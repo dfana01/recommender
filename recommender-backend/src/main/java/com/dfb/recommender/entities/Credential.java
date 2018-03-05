@@ -6,7 +6,10 @@ import javax.persistence.*;
  * Created by Dante on 2/11/2018.
  */
 @Entity
-@NamedQuery(name="Credential.login", query="SELECT c FROM Credential c WHERE c.username = :username and c.password = :password")
+@NamedQueries({
+        @NamedQuery(name="Credential.login",
+                query="SELECT c FROM Credential c WHERE c.username = :username and c.password = :password"),
+})
 public class Credential {
 
     private Long id;
@@ -24,7 +27,7 @@ public class Credential {
         this.id = id;
     }
 
-    @OneToOne(fetch=FetchType.LAZY, mappedBy = "credential")
+    @OneToOne(fetch=FetchType.LAZY, mappedBy = "credential", cascade=CascadeType.ALL)
     public User getUser() {
         return user;
     }

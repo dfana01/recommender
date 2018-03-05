@@ -1,0 +1,47 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title color="dark">
+      RECOMMENDER
+      <small ion-text>-</small>
+      <small ion-text color="danger">BETA</small>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <p ion-text text-center>Hi and welcome to our platform, please complete your profile.</p>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Firstname</ion-label>
+      <ion-input [(ngModel)]="user.firstName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Lastname</ion-label>
+      <ion-input [(ngModel)]="user.lastName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>E-Mail</ion-label>
+      <ion-input [(ngModel)]="user.email" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input [(ngModel)]="user.username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input [(ngModel)]="user.password" type="password"></ion-input>
+    </ion-item>
+    <ion-item no-lines></ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer padding>
+  <button ion-button block (click)="onSave()">Save and Login</button>
+</ion-footer>

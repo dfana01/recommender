@@ -3,8 +3,16 @@ package com.dfb.recommender.rest;
 import com.dfb.recommender.core.RatingDao;
 import com.dfb.recommender.entities.Movie;
 import com.dfb.recommender.entities.Rating;
+import com.dfb.recommender.rest.dto.ExceptionDto;
+import com.dfb.recommender.rest.dto.RatingDto;
 
+import javax.ejb.DuplicateKeyException;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.EntityExistsException;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.validation.ConstraintViolationException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -13,26 +21,36 @@ import javax.ws.rs.core.Response;
  * Created by Dante on 2/22/2018.
  */
 @Path("/rating")
-public class RatingRest {
+@Stateless
+public class RatingRest extends RatingDao {
 
-    public class NoMovieFound extends WebApplicationException {
-        public NoMovieFound(String message) {
-            super(Response.status(Response.Status.NOT_FOUND)
-                    .entity(message).type(MediaType.TEXT_PLAIN).build());
-        }
-    }
-
-    @Inject
-    private RatingDao ratingDao;
+    @PersistenceContext
+    private EntityManager em;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response rate(Rating rating) {
-        if(rating.getMovie() == null){
-            throw new NoMovieFound("No movie found.");
+    public Response insert(RatingDto ratingDto) {
+        try {
+            Rating rating = this.rate(ratingDto);
+            ratingDto = new RatingDto();
+            rating.getMovie().getLinks();
+            rating.getUser().getCredential();
+            ratingDto.fromData(rating);
+            return Response.ok(ratingDto).build();
+        } catch (EntityExistsException e){
+            ExceptionDto exceptionDto = new ExceptionDto();
+            exceptionDto.fromData(e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(e)
+                    .build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
         }
-        ratingDao.create(rating);
-        return Response.status(Response.Status.OK).build();
+    }
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
     }
 }

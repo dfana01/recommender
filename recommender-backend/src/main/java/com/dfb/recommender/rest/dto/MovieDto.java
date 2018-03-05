@@ -17,7 +17,7 @@ public class MovieDto implements BaseDto<Movie> {
     private Long id;
     private String title;
     private String[] genres;
-    private Link link;
+    private LinkDto link;
     private List<Tag> tags;
     private double rating;
 
@@ -31,7 +31,10 @@ public class MovieDto implements BaseDto<Movie> {
         this.id = data.getId();
         this.title = data.getTitle();
         this.genres = data.getGenres().split("\\|");
-        this.link = data.getLink();
+        if(!data.getLinks().isEmpty()){
+            this.link = new LinkDto();
+            this.link.fromData(data.getLinks().get(0));
+        }
         if(data.getRatings().size() == 0){
             this.rating = 0.;
         }else{
@@ -57,15 +60,15 @@ public class MovieDto implements BaseDto<Movie> {
         return genres;
     }
 
-    public Link getLink() {
-        return link;
-    }
-
     public List<Tag> getTags() {
         return tags;
     }
 
     public double getRating() {
         return rating;
+    }
+
+    public LinkDto getLink() {
+        return link;
     }
 }

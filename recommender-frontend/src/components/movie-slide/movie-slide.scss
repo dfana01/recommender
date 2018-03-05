@@ -1,18 +1,29 @@
 movie-slide {
     .title{
         margin: 10px 10px 10px 5px;
-        padding: 10px;
+        padding: 20px;
     }
 
-    ion-slide{
-        padding: 5px;
+    ion-slide{ 
         margin: 5px;
         min-width: 240px;
         min-height: 480px;
         max-width: 240px;
         max-height: 480px;
         background: #ccc;
+        transition: all 0.5s ease;
+        transition-delay:1s;
+        img{
+            min-width: 240px;
+            min-height: 480px;
+        }
+       
     }
+    ion-slide:hover{
+        min-width: 350px; 
+        max-width: 350px; 
+    }
+
     .slide-wrapper{
         min-height: 480px; 
         max-height: 480px;
@@ -28,6 +39,7 @@ movie-slide {
             padding: 10px;
             font-size: 15px;
         }
+        
 
         .slide-button{
             top:5px;

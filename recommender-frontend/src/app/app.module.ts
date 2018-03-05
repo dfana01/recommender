@@ -5,12 +5,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { MovieProvider } from '../providers/movie/movie';
 import { HttpClientModule } from '@angular/common/http';
 import { HomePageModule } from '../pages/home/home.module';
 import { AuthProvider } from '../providers/auth/auth';
 import { LoginPageModule } from '../pages/login/login.module';
+import { RecommenderProvider } from '../providers/recommender/recommender';
+import { RateProvider } from '../providers/rate/rate'; 
+import { RegisterPageModule } from '../pages/register/register.module';
+import { TabsPageModule } from '../pages/tabs/tabs.module';
 
 @NgModule({
   declarations: [
@@ -19,8 +22,10 @@ import { LoginPageModule } from '../pages/login/login.module';
   imports: [
     HttpClientModule,
     BrowserModule,
-    HomePageModule,
-    LoginPageModule,
+    HomePageModule, 
+    LoginPageModule, 
+    RegisterPageModule,
+    TabsPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -32,7 +37,9 @@ import { LoginPageModule } from '../pages/login/login.module';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MovieProvider,
-    AuthProvider
+    AuthProvider,
+    RecommenderProvider,
+    RateProvider
   ]
 })
 export class AppModule {}

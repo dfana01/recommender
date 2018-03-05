@@ -6,13 +6,15 @@ import javax.persistence.*;
  * Created by Dante on 2/11/2018.
  */
 @Entity
+@Table(uniqueConstraints={
+        @UniqueConstraint(columnNames = {"movie", "user"})
+})
 public class Rating {
 
     private Long id;
     private Movie movie;
     private double qualification;
     private User user;
-
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

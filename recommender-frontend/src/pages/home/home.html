@@ -1,12 +1,40 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Recommender
+    <ion-title color="dark">
+      RECOMMENDER
+      <small ion-text>-</small>
+      <small ion-text color="danger">BETA</small>
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-badge color="accent" color="danger">5</ion-badge>
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="logout()"> 
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <movie-slide title="Recommendation"></movie-slide>
+  <ion-slides class="recomendation" loop="true">
+    <ion-slide *ngFor="let recommendation of recommendations">
+      <img data-src="{{ recommendation?.movie?.detail?.backdrop_path }}">
+      <div class="info">
+        <h1>{{ recommendation?.movie?.title }}</h1>
+        <ion-buttons>
+          <button ion-button color="dark" round>
+            Play&nbsp;&nbsp;
+            <ion-icon name="play"></ion-icon>
+          </button>
+        </ion-buttons>
+        <p ion-text>{{ recommendation?.movie?.detail?.overview }}</p>
+      </div>
+    </ion-slide>
+    <ion-slide *ngIf="recommendations.length == 0">
+      <h1 ion-text text-center color="danger">No recommendation yet, please rate some movies.</h1>
+    </ion-slide>
+  </ion-slides>
   <movie-slide title="Movies"></movie-slide>
 </ion-content>

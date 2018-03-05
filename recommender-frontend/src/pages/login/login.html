@@ -1,14 +1,17 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
-
-</ion-header>
+    <ion-navbar>
+      <ion-title color="dark">
+        RECOMMENDER
+        <small ion-text>-</small>
+        <small ion-text color="danger">BETA</small>
+      </ion-title>
+    </ion-navbar>
+  
+  </ion-header>
 
 
 <ion-content padding>
-  <h1 ion-text text-center>Recommender</h1>
   <ion-list>
     <ion-item>
       <ion-label floating>User</ion-label>
@@ -19,9 +22,10 @@
       <ion-input [(ngModel)]="credential.password" type="password"></ion-input>
     </ion-item>
     <ion-item no-lines></ion-item>
-  </ion-list>
+  </ion-list> 
 </ion-content>
 
-<ion-footer>
-  <button ion-button full (click)="onLogin()">Sign in</button>
+<ion-footer padding>
+  <button ion-button block (click)="onLogin()">Sign in</button>
 </ion-footer>
+ 

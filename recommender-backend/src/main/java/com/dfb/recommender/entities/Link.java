@@ -43,8 +43,8 @@ public class Link {
         this.tmdbid = tmdbid;
     }
 
-    @OneToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="movie", referencedColumnName = "id")
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="MOVIE")
     public Movie getMovie() {
         return movie;
     }

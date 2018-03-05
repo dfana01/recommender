@@ -13,7 +13,7 @@ public class User {
     private String lastName;
     private String phone;
     private String email;
-//    private List<Recommendation> recommendations;
+    private List<Recommendation> recommendations;
     private List<Rating> ratings;
     private Credential credential;
 
@@ -29,7 +29,7 @@ public class User {
     }
 
     @Basic
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     public String getFirstName() {
         return firstName;
     }
@@ -39,7 +39,7 @@ public class User {
     }
 
     @Basic
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     public String getLastName() {
         return lastName;
     }
@@ -49,7 +49,7 @@ public class User {
     }
 
     @Basic
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     public String getPhone() {
         return phone;
     }
@@ -59,7 +59,7 @@ public class User {
     }
 
     @Basic
-    @Column(nullable = false, length = 100)
+    @Column(nullable = true, length = 100)
     public String getEmail() {
         return email;
     }
@@ -67,15 +67,16 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-//
-//    @OneToMany(mappedBy = "user",cascade=CascadeType.PERSIST)
-//    public List<Recommendation> getRecommendations() {
-//        return recommendations;
-//    }
-//
-//    public void setRecommendations(List<Recommendation> recommendations) {
-//        this.recommendations = recommendations;
-//    }
+
+    @OneToMany(mappedBy = "user",cascade=CascadeType.PERSIST)
+    @OrderBy("date desc")
+    public List<Recommendation> getRecommendations() {
+        return recommendations;
+    }
+
+    public void setRecommendations(List<Recommendation> recommendations) {
+        this.recommendations = recommendations;
+    }
 
     @OneToMany(mappedBy = "user",cascade=CascadeType.PERSIST)
     public List<Rating> getRatings() {

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
+import { IonicPage, ToastController, Events } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Credential } from '../../app/app.model';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -12,20 +13,21 @@ export class LoginPage {
 
   credential: Credential = {} as Credential;
 
-  constructor(private viewCtrl: ViewController, private authProvider: AuthProvider,
-            private toastCtrl: ToastController) {}
+  constructor(private authProvider: AuthProvider,
+              private toastCtrl: ToastController,
+            private events: Events) { }
 
-  onLogin(){
+  onLogin() {
     this.authProvider.login(this.credential)
       .subscribe(
-        (data) => {
-          console.log(data);
-        },
+        (data) =>  this.close(),
         (error) => {
-          this.toastCtrl.create({ duration: 3000, message: "Invalid user or password."})
-          console.log(error);
+          this.toastCtrl.create({ duration: 3000, message: "Invalid user or password." }).present();
         }
       );
   }
 
+  close(){
+    this.events.publish("tab:close");
+  }
 }
