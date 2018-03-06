@@ -23,8 +23,7 @@ export class MovieSlideComponent  implements AfterViewInit{
   to: number = 20;
   change: number = 10;
   lastTo: number = 20; 
-
-  MAX = 40;
+ 
 
   constructor(private movieProvider: MovieProvider) {}
 

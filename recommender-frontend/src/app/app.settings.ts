@@ -1,8 +1,8 @@
 export class Settings{
 
     private static APIKEY_TMDB = 'b1e28dd7e44511052a8d30a441b7408a';
-    private static DOMAIN_IP = "http://localhost:8080";
-    private static END_POINT = `${Settings.DOMAIN_IP}/recommender-backend-1.0-SNAPSHOT/api`;
+    private static DOMAIN_IP = "http://dfb.com.do:8080";
+    private static END_POINT = `${Settings.DOMAIN_IP}/recommender/api`;
     private static TMDB_ENDPOINT = "https://api.themoviedb.org";
     private static TMDB_VERSION = "3";
 

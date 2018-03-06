@@ -1,6 +1,6 @@
 allprojects{
 	group 'recommender-app'
-	version '1.0-SNAPSHOT'
+	version '1.0'
 }
 
 task clean(type: GradleBuild) {

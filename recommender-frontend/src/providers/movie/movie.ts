@@ -13,6 +13,7 @@ export class MovieProvider {
     return this.http.get<Movie[]>(Settings.movieRangeUrl(from, to))
       .do((data) => {
         data.forEach((movie) => {
+          if(!movie.link) return;
           this.getMovieDetail(movie.link.tmdbid)
             .subscribe((detail) => {
               detail.backdrop_path = this.getMovieImageUrl(detail.backdrop_path);
